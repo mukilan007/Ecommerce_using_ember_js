@@ -1,36 +1,36 @@
 <div class="topnav">
-    <a href="/Eco/VendorHomePage.html">Home</a>
-    <a class="active" href="/Eco/AddProduct.html">Add</a>
-    <a class="reload" href="/Eco/VendorDelivery.html">Delivery</a>
-    <a class="reload" href="/Eco/VendorDelivered.html">Delivered</a>
-    <a class="reload" onclick="logout()">Logout</a>
+    <a href="/#/VendorHomePage">Home</a>
+    <a class="active" href="/#/AddProduct">Add</a>
+    <a class="reload" href="/#/VendorDelivery">Delivery</a>
+    <a class="reload" href="/#/VendorDelivered">Delivered</a>
+    <a class="reload" {{action 'logout'}}>Logout</a>
 </div>
 <div>
-    <form id="addform" onsubmit="event.preventDefault();vendorAdd();">
+    <form id="addform">
         <div class="vendorcontainer">
             <div id="vendor_inner_container1">
                 <span id="error"></span>
                 <label><b>Category Name</b></label><br>
-                <input type="text" name="categoryname" id="categoryname" placeholder="Category"><br>
+                <input type="text" name="categoryname" id="categoryname" placeholder="Category" required><br>
                 <label><b>Type</b></label><br>
-                <input type="text" name="type" id="type" placeholder="Type of Category"><br>
+                <input type="text" name="type" id="type" placeholder="Type of Category" required><br>
                 <label><b>Brand Name</b></label><br>
-                <input type="text" name="brandname" id="brandname" placeholder="Product Brand"><br>
+                <input type="text" name="brandname" id="brandname" placeholder="Product Brand" required><br>
                 <label><b>Product Name</b></label><br>
-                <input type="text" name="productname" id="productname" placeholder="Product Name"><br>
+                <input type="text" name="productname" id="productname" placeholder="Product Name" required><br>
                 <label><b>Detail</b></label><br>
-                <textarea rows="4" cols="20" name="detail" id="detail" placeholder="About it"></textarea><br>
+                <textarea rows="4" cols="20" name="detail" id="detail" placeholder="About it" required></textarea><br>
                 <label><b>Size</b></label><br>
-                <input type="number" name="size" id="size" placeholder="Dimension"><br>
+                <input type="number" name="size" id="size" placeholder="Dimension" required><br>
                 <label><b>Color</b></label><br>
-                <input type="text" name="color" id="color" placeholder="Color"><br>
+                <input type="text" name="color" id="color" placeholder="Color" required><br>
                 <label><b>Price</b></label><br>
-                <input type="number" name="price" id="price" placeholder="Price"><br>
+                <input type="number" name="price" id="price" placeholder="Price" required><br>
                 <label><b>Quantity</b></label><br>
-                <input type="number" name="quantity" id="quantity" placeholder="Product Available"><br>
+                <input type="number" name="quantity" id="quantity" placeholder="Product Available" required><br>
             </div>
             <div id="vendor_inner_container2">
-                <input type="submit" id="submit" value="Add">
+                <input {{action "vendorAdd"}} type="submit" id="submit" value="Add">
             </div>
         </div>
     </form>
