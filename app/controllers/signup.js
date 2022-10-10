@@ -31,10 +31,10 @@ export default Ember.Controller.extend({
                 cache: false,
                 success: function(usertype, name){
                     if(usertype === "isadmin"){
-                        window.location.href = "/#/VendorHomePage.html";
+                        window.location.href = "EcoEmber2/#/VendorHomePage.html";
                     }
                     else if(usertype === "notadmin") {
-                        window.location.href = "/#/Home.html";
+                        window.location.href = "EcoEmber2/#/Home.html";
                     }
                     alert("Welcome " +  name);
 //                    myFunction();

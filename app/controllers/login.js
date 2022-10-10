@@ -14,10 +14,10 @@ export default Ember.Controller.extend({
 //                    data: {"payload" : JSON.stringify({"e_mail": emailId, "password": password})},
 //                    success: function(usertype, name){
 //                        if(usertype === "isadmin"){
-//                            window.location.href = "/#/VendorHomePage";
+//                            window.location.href = "EcoEmber2/#/VendorHomePage";
 //                        }
 //                        else if(usertype === "notadmin") {
-//                            window.location.href = "/#/Home"; }
+//                            window.location.href = "EcoEmber2/#/Home"; }
 //                        alert("Welcome " +  name);
 //                    },
 //                    error: function(a, msg){
@@ -32,10 +32,10 @@ export default Ember.Controller.extend({
                 cache: false,
                 success: function(usertype, name){
                     if(usertype === "isadmin"){
-                        window.location.href = "/#/VendorHomePage";
+                        window.location.href = "EcoEmber2/#/VendorHomePage";
                     }
                     else if(usertype === "notadmin") {
-                        window.location.href = "/#/Home"; }
+                        window.location.href = "EcoEmber2/#/Home"; }
                     alert("Welcome " +  name);
         //            myFunction();
                 },

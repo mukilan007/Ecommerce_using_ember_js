@@ -24,14 +24,14 @@ export default Ember.Controller.extend({
         redirectthis:function(value) {
             sessionStorage.clear();
             sessionStorage.setItem("catname", value);
-            window.location.href = "/#/ProductDetails";
+            window.location.href = "EcoEmber2/#/ProductDetails";
         },
         logout:function() {
             $.ajax({
                 url : "logout",
                 method : 'GET',
                 success: function(){
-                    window.location.href = "/#/login";
+                    window.location.href = "EcoEmber2/#/login";
                 }
                 });
         }
