@@ -1,0 +1,40 @@
+label {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 2px;
+}
+input {
+        height: 20px;
+}
+
+.container {
+        border: 6px solid #f1f1f1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+#inner_container1 {
+        padding: 20px;
+}
+
+#inner_container2 {
+        background-color:#f1f1f1;
+        padding: 16px;
+}
+
+#submit {
+        background-color: #f4511e;
+        color: white;
+        padding: 14px 20px 28px;
+
+        margin: 0;
+        border: none;
+        width: 100%;
+        opacity: .7;
+}
+
+#submit:hover {
+        background-color: #4CAF50;
+        opacity: 1;
+}

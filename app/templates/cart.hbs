@@ -1,0 +1,41 @@
+<div>
+    {{topnavbar}}
+    <div class="topnav">
+        <a class="reload" {{action 'refresh'}}>Eco</a>
+        <a href="/EcoEmber2/#/Home">Home</a>
+        <a class="active" href="/EcoEmber2/#/Cart">Cart</a>
+        <a href="/EcoEmber2/#/OrderDetail">Your Order</a>
+        <a {{action 'logout'}}>Logout</a>
+    </div>
+    <div>
+        <table id="cartlist">
+            <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Brand Name</th>
+                <th>Color</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each this.itemDataCart as |p|}}
+                    <tr>
+                        <td>{{p.product_name}}</td>
+                        <td>{{p.brand_name}}</td>
+                        <td>{{p.color}}</td>
+                        <td>{{p.size}}</td>
+                        <td id="tbodyquantity" contenteditable="true" >{{p.quantity}}</td>
+                        <td>{{p.price}}</td>
+                        <td>{{p.totalprice}}</td>
+                        <button {{action 'quantity_save' p.product_id}} >Save</button>
+                        <button id="cancel" {{action 'Cancel' p.product_id}} >Cancel</button>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <button class ="btncart" {{action 'generateorder'}}><b>Order</b></button>
+</div>

@@ -1,0 +1,22 @@
+.btncart{
+        border-radius: 10px;
+        padding: 14px 20px 15px;
+        border: none;
+        background-color: #f4511e;
+        opacity: .7;
+}
+
+.btncart:hover {
+        background-color: #4CAF50;
+        opacity: 1;
+}
+
+#cartlist #cancel{
+    background-color: #F75C3C;
+    border-radius: 14px;
+}
+
+#cartlist button:hover {
+      background-color: #04AA6D;
+      color: white;
+}

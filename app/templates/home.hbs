@@ -1,0 +1,23 @@
+{{topnavbar}}
+<div class="topnav">
+    <a class="reload" {{action 'refresh'}}>Eco</a>
+    <a class="active" href="/EcoEmber2/#/Home">Home</a>
+    <a href="/EcoEmber2/#/Cart">Cart</a>
+    <a href="/EcoEmber2/#/OrderDetail">Your Order</a>
+    <a {{action 'logout'}}>Logout</a>
+</div>
+<div>
+    <div id="catname"></div>
+    <div class="row text-center py-5" id="itemData">
+        {{#each this.itemData as |p|}}
+            <div class="outercard">
+                <div class="innercard">
+                    <label><b>{{p.cateory_name}}</b></label><br>
+                    <button id="cardbtn"  {{action 'redirectthis'  p.cateory_name}}
+                            value={{p.cateory_name}}>Goto</button>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+

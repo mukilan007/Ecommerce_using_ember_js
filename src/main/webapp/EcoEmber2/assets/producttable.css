@@ -1,0 +1,34 @@
+table {
+        border-collapse: collapse;
+        width: 100%;
+        color: black;
+        text-align: left;
+}
+th {
+        background-color: green;
+        color: white;
+        opacity: 0.6;
+}
+.btncart{
+        border-radius: 10px;
+        padding: 14px 20px 15px;
+        border: none;
+        background-color: #f4511e;
+        opacity: .7;
+}
+.btncart:hover {
+        background-color: #4CAF50;
+        opacity: 1;
+}
+
+
+.outercard{
+        padding: 3rem;
+}
+.innercard {
+        border: 2px solid black;
+        padding: 1.25rem;
+}
+#cardbtn{
+        padding-bottom: 10px;
+}

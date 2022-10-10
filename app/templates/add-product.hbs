@@ -1,0 +1,37 @@
+<div class="topnav">
+    <a href="/Eco/VendorHomePage.html">Home</a>
+    <a class="active" href="/Eco/AddProduct.html">Add</a>
+    <a class="reload" href="/Eco/VendorDelivery.html">Delivery</a>
+    <a class="reload" href="/Eco/VendorDelivered.html">Delivered</a>
+    <a class="reload" onclick="logout()">Logout</a>
+</div>
+<div>
+    <form id="addform" onsubmit="event.preventDefault();vendorAdd();">
+        <div class="vendorcontainer">
+            <div id="vendor_inner_container1">
+                <span id="error"></span>
+                <label><b>Category Name</b></label><br>
+                <input type="text" name="categoryname" id="categoryname" placeholder="Category"><br>
+                <label><b>Type</b></label><br>
+                <input type="text" name="type" id="type" placeholder="Type of Category"><br>
+                <label><b>Brand Name</b></label><br>
+                <input type="text" name="brandname" id="brandname" placeholder="Product Brand"><br>
+                <label><b>Product Name</b></label><br>
+                <input type="text" name="productname" id="productname" placeholder="Product Name"><br>
+                <label><b>Detail</b></label><br>
+                <textarea rows="4" cols="20" name="detail" id="detail" placeholder="About it"></textarea><br>
+                <label><b>Size</b></label><br>
+                <input type="number" name="size" id="size" placeholder="Dimension"><br>
+                <label><b>Color</b></label><br>
+                <input type="text" name="color" id="color" placeholder="Color"><br>
+                <label><b>Price</b></label><br>
+                <input type="number" name="price" id="price" placeholder="Price"><br>
+                <label><b>Quantity</b></label><br>
+                <input type="number" name="quantity" id="quantity" placeholder="Product Available"><br>
+            </div>
+            <div id="vendor_inner_container2">
+                <input type="submit" id="submit" value="Add">
+            </div>
+        </div>
+    </form>
+</div>

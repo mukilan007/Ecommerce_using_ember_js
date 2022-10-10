@@ -1,0 +1,30 @@
+<div>
+    <div class="topnav">
+        <a class="reload" {{action 'refresh'}} >Eco</a>
+        <a href="/EcoEmber2/#/Home">Home</a>
+        <a href="/EcoEmber2/#/Cart">Cart</a>
+        <a href="/EcoEmber2/#/OrderDetail">Your Order</a>
+        <a {{action 'logout'}} >Logout</a>
+    </div>
+    <div id="productname">{{productname}}</div>
+    <div class="row text-center py-5" id="itemData1">
+        {{#each this.totalproduct as |p|}}
+            <div class="imgcard">
+                <div class="innercard">
+                    <img src="image/image_photo.png" alt="photo" style="width:150px;height:150px;">
+                    <div class="content">
+                        <h4><b>{{p.product_name}}</b></h4><br>
+                        <p><b>brand_name</b>: {{p.brand_name}}</p>
+                        <p><b>price</b>: {{p.price}}</p>
+                        <p><b>Detail</b>: {{p.detail}}</p>
+                        <p><b>color</b>: {{p.color}}</p>
+                        <p><b>size</b>: {{p.size}}</p>
+                        <p><b>quantity</b>: {{p.quantity}}</p>
+                        <button class ="btncart" {{action 'addcart' p.product_id p.vendor_id}}
+                                value={{p.product_id}}><b>Add to Cart</b></button>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
