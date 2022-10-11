@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
                 var product = $.parseJSON(result);
                 console.log(product);
                 self.set('itemDataCart',product);
+                self.set('totalamount',product[product.length-1]);
              },
             error: function(result){
                 alert(" error occurs "+ result);
@@ -47,6 +48,7 @@ export default Ember.Controller.extend({
             method : 'GET',
             success: function(){
                 window.location.href = "#/login";
+                window.location.reload();
             }
             });
         },

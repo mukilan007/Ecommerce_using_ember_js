@@ -3,11 +3,6 @@ import $ from 'jquery';
 
 export default Ember.Controller.extend({
 //    ajax: Ember.inject.service(),
-    errorMessage:function() {
-        var error = document.getElementById("error");
-        error.textContent = "Please enter a correct value";
-        error.style.color = "red";
-    },
     actions : {
         getUser:function() {
             document.getElementById("error").value = "";
@@ -45,7 +40,10 @@ export default Ember.Controller.extend({
                 },
                 error: function(a, msg){
                     alert(msg);
-                    this.send("errorMessage");
+//                    this.send("errorMessage");
+                    var error = document.getElementById("error");
+                    error.textContent = "Please enter a correct value";
+                    error.style.color = "red";
                 }
             });
         },

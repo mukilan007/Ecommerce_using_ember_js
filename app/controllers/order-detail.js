@@ -5,7 +5,6 @@ export default Ember.Controller.extend({
     init:function() {
         this._super();
         var self = this;
-        alert("order");
         $.ajax({
             url: "cart/order",
             method: "GET",
@@ -31,6 +30,7 @@ export default Ember.Controller.extend({
                 method : 'GET',
                 success: function(){
                     window.location.href = "#/login";
+                    window.location.reload();
                 }
                 });
         },
@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
         onCancel:function(data) {
             var payload = {"_id": data.toString()};
              $.ajax({
-                 url : "vendor/order/delete",
+                 url : "customer/order/delete",
                  method: 'GET',
                  type: "json",
                  data: {"payload" : JSON.stringify(payload)},

@@ -47,6 +47,10 @@ public class CustomerService{
         return new ResultSettoJSON().TableListOfCategory(resultdata);
     }
 
+    public void deleteOrder(String orderid) throws SQLException {
+        String order_tablename = Constant.DataBase_UserTableName.OrderDetail;
+        rest.executeUpdate(Query.delete(order_tablename,Constant.OrderDetail.id,orderid));
+    }
 
     public JSONArray findproduct(Map<String, String> payload) throws SQLException {
         String condition = " "+ Constant.DataBase_Gobal_Products.categoryname +" = '"+
@@ -172,7 +176,8 @@ public class CustomerService{
         }
         notification.dataChange();
     }
-    public void decreaseProduct(String cart_tablename, String order_tablename, ResultSet resultdata) throws SQLException {
+    public void decreaseProduct(String cart_tablename, ResultSet resultdata) throws SQLException {
+        String order_tablename = Constant.DataBase_UserTableName.DBProductdata;
         Query.updateorder(cart_tablename, order_tablename, resultdata);
     }
     public void updatecart(String cart_tablename, String order_tablename, String stage, String userid) throws SQLException{
@@ -180,8 +185,8 @@ public class CustomerService{
         ResultSet resultdata = rest.executeQuery(Query.find(cart_tablename, condition));
         Query.queryAddOrder(order_tablename, userid, stage, resultdata);
         resultdata.beforeFirst();
-//        decreaseProduct(cart_tablename, order_tablename, resultdata);
-//        resultdata.beforeFirst();
+        decreaseProduct(cart_tablename, resultdata);
+        resultdata.beforeFirst();
         rest.executeUpdate(Query.delete(cart_tablename,
                 Constant.UserHistory.stage,Constant.CustomerStage.cart));
 

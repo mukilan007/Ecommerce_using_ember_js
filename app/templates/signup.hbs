@@ -1,36 +1,35 @@
 <form id="signform">
-    <div class="container">
+    <div class="container_1">
         <div id="inner_container1">
             <span id="error"></span>
             <label><b>Name</b></label>
-            <input type="text" name="name" id="name" placeholder="Username" required>
+            <input type="text" name="name" id="name" placeholder="Username" required><br>
 
             <label><b>Email Id</b></label>
-            <input type="email" name="emailId" id="emailId" placeholder="E-Mail Id" required>
+            <input type="email" name="emailId" id="emailId" placeholder="E-Mail Id" required><br>
 
             <label><b>Password</b></label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="password" name="password" id="password" placeholder="Password" required><br>
 
             <label><b>Confirm Password</b></label>
-            <input type="password" name="cpassword" id="cpassword" placeholder="Re-type Password" required>
+            <input type="password" name="cpassword" id="cpassword" placeholder="Re-type Password" required><br>
 
             <label><b>Date of Birth</b></label>
-            <input type="date" name="dob" id="dob" placeholder="Birth date" required>
+            <input type="date" name="dob" id="dob" placeholder="Birth date" required><br>
 
             <label><b>Address</b></label>
-            <textarea rows="4" cols="20" name="address" id="address" placeholder="Your Address" required></textarea>
+            <textarea rows="4" cols="20" name="address" id="address" placeholder="Your Address" required></textarea><br>
 
             <label><b>Phone No</b></label>
-            <input type="tel" name="phone" id="phone" placeholder="Mobile Number" required>
+            <input type="tel" name="phone" id="phone" placeholder="Mobile Number" required><br>
 
-            <label><b>Signup as a Vendor</b></label>
-            <input type="checkbox" id="admin"/>
+            <label><b>Signup as a Vendor</b></label><br>
+            <input type="checkbox" id="admin"/><br>
 
-            <p>Have Account?<a href="/Eco/Login2">Back to Sign in...</a></p>
+            <p>Have Account?<a href="#/login">Back to Sign in...</a></p>
         </div>
         <div id="inner_container2">
-            <input type="submit" id="submit" value="Sign In">
+            <input {{action 'setUser'}} type="submit" id="submit" value="Sign In">
         </div>
     </div>
 </form>
-<div id="snackbar">Some text some message..</div>

@@ -1,12 +1,12 @@
 <form id="signform" >
-    <div class="container">
+    <div class="container_1">
         <div id="inner_container1">
             <span id="error"></span>
             <label><b>Email Id</b></label>
-            <input type="email" name="emailId" id="emailId" placeholder="E-Mail Id">
+            <input type="email" name="emailId" id="emailId" placeholder="E-Mail Id" required><br>
             <label><b>Password</b></label>
-            <input type="password" name="password" id="password" placeholder="Password"><br>
-            <a href="/Eco/Signup.html">Create Account...</a>
+            <input type="password" name="password" id="password" placeholder="Password" required><br>
+            <a href="#/Signup">Create Account...</a>
         </div>
         <div id="inner_container2">
             <input  {{action 'getUser'}} type="submit" id="submit" value="Sign In">

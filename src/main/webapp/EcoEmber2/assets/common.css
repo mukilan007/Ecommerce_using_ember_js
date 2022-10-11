@@ -17,20 +17,25 @@
 }
 
 #cartlist button:hover {
-      background-color: #04AA6D;
-      color: white;
+  background-color: #04AA6D;
+  color: white;
 }
 
 .reload {
-        margin-left: auto;
-        float: right;
-        display: flex;
+    margin-left: auto;
+    float: right;
+    display: flex;
 }
 
 #cardbtn{
-        padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 #cardbtn input{
-        height: inherit;
+    height: inherit;
+}
+
+body {
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+    background: linear-gradient(to right, #3f4c6b, #606c88);
 }

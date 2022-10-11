@@ -33,6 +33,7 @@ export default Ember.Controller.extend({
                 method : 'GET',
                 success: function(){
                     window.location.href = "#/login";
+                    window.location.reload();
                 }
                 });
         }

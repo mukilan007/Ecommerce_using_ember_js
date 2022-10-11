@@ -32,13 +32,13 @@ define('eco-ember2/components/app-version', ['exports', 'ember-cli-app-version/c
 define('eco-ember2/controllers/add-product', ['exports', 'ember', 'jquery'], function (exports, _ember, _jquery) {
     exports['default'] = _ember['default'].Controller.extend({
         actions: {
-
             logout: function logout() {
                 _jquery['default'].ajax({
                     url: "logout",
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             },
@@ -102,6 +102,7 @@ define('eco-ember2/controllers/cart', ['exports', 'ember', 'jquery'], function (
                     var product = _jquery['default'].parseJSON(result);
                     console.log(product);
                     self.set('itemDataCart', product);
+                    self.set('totalamount', product[product.length - 1]);
                 },
                 error: function error(result) {
                     alert(" error occurs " + result);
@@ -136,6 +137,7 @@ define('eco-ember2/controllers/cart', ['exports', 'ember', 'jquery'], function (
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             },
@@ -214,6 +216,7 @@ define('eco-ember2/controllers/home', ['exports', 'ember', 'jquery'], function (
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             }
@@ -223,11 +226,6 @@ define('eco-ember2/controllers/home', ['exports', 'ember', 'jquery'], function (
 define('eco-ember2/controllers/login', ['exports', 'ember', 'jquery'], function (exports, _ember, _jquery) {
     exports['default'] = _ember['default'].Controller.extend({
         //    ajax: Ember.inject.service(),
-        errorMessage: function errorMessage() {
-            var error = document.getElementById("error");
-            error.textContent = "Please enter a correct value";
-            error.style.color = "red";
-        },
         actions: {
             getUser: function getUser() {
                 document.getElementById("error").value = "";
@@ -265,7 +263,10 @@ define('eco-ember2/controllers/login', ['exports', 'ember', 'jquery'], function 
                     },
                     error: function error(a, msg) {
                         alert(msg);
-                        this.send("errorMessage");
+                        //                    this.send("errorMessage");
+                        var error = document.getElementById("error");
+                        error.textContent = "Please enter a correct value";
+                        error.style.color = "red";
                     }
                 });
             }
@@ -280,7 +281,6 @@ define('eco-ember2/controllers/order-detail', ['exports', 'ember', 'jquery'], fu
         init: function init() {
             this._super();
             var self = this;
-            alert("order");
             _jquery['default'].ajax({
                 url: "cart/order",
                 method: "GET",
@@ -306,6 +306,7 @@ define('eco-ember2/controllers/order-detail', ['exports', 'ember', 'jquery'], fu
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             },
@@ -315,7 +316,7 @@ define('eco-ember2/controllers/order-detail', ['exports', 'ember', 'jquery'], fu
             onCancel: function onCancel(data) {
                 var payload = { "_id": data.toString() };
                 _jquery['default'].ajax({
-                    url: "vendor/order/delete",
+                    url: "customer/order/delete",
                     method: 'GET',
                     type: "json",
                     data: { "payload": JSON.stringify(payload) },
@@ -369,6 +370,7 @@ define('eco-ember2/controllers/product-details', ['exports', 'ember', 'jquery'],
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             },
@@ -404,55 +406,51 @@ define('eco-ember2/controllers/product-details', ['exports', 'ember', 'jquery'],
 });
 define('eco-ember2/controllers/signup', ['exports', 'ember', 'jquery'], function (exports, _ember, _jquery) {
     exports['default'] = _ember['default'].Controller.extend({
-        init: function init() {
-            alert("login");
-            var name = document.getElementById("name").value;
-            var emailId = document.getElementById("emailId").value;
-            var password = document.getElementById("password").value;
-            var cpassword = document.getElementById("cpassword").value;
-            var dob = document.getElementById("dob").value;
-            var address = document.getElementById("address").value;
-            var phone = document.getElementById("phone").value;
-            var admin = document.getElementById("admin").checked;
-            console.log(admin);
-            if (password === cpassword) {
-                var payload = { "name": name,
-                    "e_mail": emailId,
-                    "password": password,
-                    "date_of_birth": dob,
-                    "address": address,
-                    "phone": phone
-                };
-                alert(name + ", Confirm to Create Account");
-                _jquery['default'].ajax({
-                    url: "login",
-                    method: "POST",
-                    type: "json",
-                    data: { "payload": JSON.stringify(payload),
-                        "is_admin": JSON.stringify(admin) },
-                    cache: false,
-                    success: function success(usertype, name) {
-                        if (usertype === "isadmin") {
-                            window.location.href = "#/VendorHomePage";
-                        } else if (usertype === "notadmin") {
-                            window.location.href = "#/Home";
+        actions: {
+            setUser: function setUser() {
+                var name = document.getElementById("name").value;
+                var emailId = document.getElementById("emailId").value;
+                var password = document.getElementById("password").value;
+                var cpassword = document.getElementById("cpassword").value;
+                var dob = document.getElementById("dob").value;
+                var address = document.getElementById("address").value;
+                var phone = document.getElementById("phone").value;
+                var admin = document.getElementById("admin").checked;
+                console.log(admin);
+                if (password === cpassword) {
+                    var payload = { "name": name,
+                        "e_mail": emailId,
+                        "password": password,
+                        "date_of_birth": dob,
+                        "address": address,
+                        "phone": phone
+                    };
+                    alert(name + ", Confirm to Create Account");
+                    _jquery['default'].ajax({
+                        url: "login",
+                        method: "POST",
+                        type: "json",
+                        data: { "payload": JSON.stringify(payload),
+                            "is_admin": JSON.stringify(admin) },
+                        cache: false,
+                        success: function success(usertype, name) {
+                            if (usertype === "isadmin") {
+                                window.location.href = "#/VendorHomePage";
+                            } else if (usertype === "notadmin") {
+                                window.location.href = "#/Home";
+                            }
+                            alert("Welcome " + name);
+                        },
+                        error: function error() {
+                            alert("Account not created, Try again.");
                         }
-                        alert("Welcome " + name);
-                        //                    myFunction();
-                    },
-                    error: function error() {
-                        alert("Account not created, Try again.");
-                    }
-                });
-            } else {
-                this.send("errorMessage");
-            }
-        },
-        action: {
-            errorMessage: function errorMessage() {
-                var error = document.getElementById("error");
-                error.textContent = "Please enter a correct value";
-                error.style.color = "red";
+                    });
+                } else {
+                    //                this.send("errorMessage");
+                    var error = document.getElementById("error");
+                    error.textContent = "Please enter a correct value";
+                    error.style.color = "red";
+                }
             }
         }
     });
@@ -486,6 +484,7 @@ define('eco-ember2/controllers/vendor-delivered', ['exports', 'ember', 'jquery']
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             }
@@ -526,6 +525,7 @@ define('eco-ember2/controllers/vendor-delivery', ['exports', 'ember', 'jquery'],
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             },
@@ -594,6 +594,7 @@ define('eco-ember2/controllers/vendor-home-page', ['exports', 'ember', 'jquery']
                     method: 'GET',
                     success: function success() {
                         window.location.href = "#/login";
+                        window.location.reload();
                     }
                 });
             },
@@ -1211,7 +1212,7 @@ define("eco-ember2/templates/cart", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 42,
+            "line": 43,
             "column": 0
           }
         },
@@ -1343,6 +1344,13 @@ define("eco-ember2/templates/cart", ["exports"], function (exports) {
         var el4 = dom.createTextNode("\n        ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n        ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "id", "productname");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
@@ -1367,16 +1375,18 @@ define("eco-ember2/templates/cart", ["exports"], function (exports) {
         var element4 = dom.childAt(element3, [3]);
         var element5 = dom.childAt(element4, [1]);
         var element6 = dom.childAt(element4, [9]);
-        var element7 = dom.childAt(element3, [7]);
-        var morphs = new Array(5);
+        var element7 = dom.childAt(element3, [5]);
+        var element8 = dom.childAt(element3, [7]);
+        var morphs = new Array(6);
         morphs[0] = dom.createMorphAt(element3, 1, 1);
         morphs[1] = dom.createElementMorph(element5);
         morphs[2] = dom.createElementMorph(element6);
-        morphs[3] = dom.createMorphAt(dom.childAt(element3, [5, 1, 3]), 1, 1);
-        morphs[4] = dom.createElementMorph(element7);
+        morphs[3] = dom.createMorphAt(dom.childAt(element7, [1, 3]), 1, 1);
+        morphs[4] = dom.createMorphAt(dom.childAt(element7, [3]), 0, 0);
+        morphs[5] = dom.createElementMorph(element8);
         return morphs;
       },
-      statements: [["content", "topnavbar", ["loc", [null, [2, 4], [2, 17]]]], ["element", "action", ["refresh"], [], ["loc", [null, [4, 26], [4, 46]]]], ["element", "action", ["logout"], [], ["loc", [null, [8, 11], [8, 30]]]], ["block", "each", [["get", "this.itemDataCart", ["loc", [null, [24, 24], [24, 41]]]]], [], 0, null, ["loc", [null, [24, 16], [36, 25]]]], ["element", "action", ["generateorder"], [], ["loc", [null, [40, 29], [40, 55]]]]],
+      statements: [["content", "topnavbar", ["loc", [null, [2, 4], [2, 17]]]], ["element", "action", ["refresh"], [], ["loc", [null, [4, 26], [4, 46]]]], ["element", "action", ["logout"], [], ["loc", [null, [8, 11], [8, 30]]]], ["block", "each", [["get", "this.itemDataCart", ["loc", [null, [24, 24], [24, 41]]]]], [], 0, null, ["loc", [null, [24, 16], [36, 25]]]], ["content", "totalamount", ["loc", [null, [39, 30], [39, 45]]]], ["element", "action", ["generateorder"], [], ["loc", [null, [41, 29], [41, 55]]]]],
       locals: [],
       templates: [child0]
     };
@@ -1670,7 +1680,7 @@ define("eco-ember2/templates/login", ["exports"], function (exports) {
         var el2 = dom.createTextNode("\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "container");
+        dom.setAttribute(el2, "class", "container_1");
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("div");
@@ -1695,6 +1705,9 @@ define("eco-ember2/templates/login", ["exports"], function (exports) {
         dom.setAttribute(el4, "name", "emailId");
         dom.setAttribute(el4, "id", "emailId");
         dom.setAttribute(el4, "placeholder", "E-Mail Id");
+        dom.setAttribute(el4, "required", "");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
@@ -1711,13 +1724,14 @@ define("eco-ember2/templates/login", ["exports"], function (exports) {
         dom.setAttribute(el4, "name", "password");
         dom.setAttribute(el4, "id", "password");
         dom.setAttribute(el4, "placeholder", "Password");
+        dom.setAttribute(el4, "required", "");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("br");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("a");
-        dom.setAttribute(el4, "href", "/Eco/Signup.html");
+        dom.setAttribute(el4, "href", "#/Signup");
         var el5 = dom.createTextNode("Create Account...");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
@@ -2333,7 +2347,7 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 37,
+            "line": 36,
             "column": 0
           }
         },
@@ -2349,7 +2363,7 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         var el2 = dom.createTextNode("\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "container");
+        dom.setAttribute(el2, "class", "container_1");
         var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("div");
@@ -2376,6 +2390,8 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.setAttribute(el4, "placeholder", "Username");
         dom.setAttribute(el4, "required", "");
         dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("label");
@@ -2392,6 +2408,8 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.setAttribute(el4, "id", "emailId");
         dom.setAttribute(el4, "placeholder", "E-Mail Id");
         dom.setAttribute(el4, "required", "");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
@@ -2410,6 +2428,8 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.setAttribute(el4, "placeholder", "Password");
         dom.setAttribute(el4, "required", "");
         dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("label");
@@ -2427,6 +2447,8 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.setAttribute(el4, "placeholder", "Re-type Password");
         dom.setAttribute(el4, "required", "");
         dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("label");
@@ -2443,6 +2465,8 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.setAttribute(el4, "id", "dob");
         dom.setAttribute(el4, "placeholder", "Birth date");
         dom.setAttribute(el4, "required", "");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
@@ -2462,6 +2486,8 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.setAttribute(el4, "placeholder", "Your Address");
         dom.setAttribute(el4, "required", "");
         dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("label");
@@ -2479,6 +2505,8 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.setAttribute(el4, "placeholder", "Mobile Number");
         dom.setAttribute(el4, "required", "");
         dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("label");
@@ -2487,11 +2515,15 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("input");
         dom.setAttribute(el4, "type", "checkbox");
         dom.setAttribute(el4, "id", "admin");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
@@ -2499,7 +2531,7 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         var el5 = dom.createTextNode("Have Account?");
         dom.appendChild(el4, el5);
         var el5 = dom.createElement("a");
-        dom.setAttribute(el5, "href", "/Eco/Login2");
+        dom.setAttribute(el5, "href", "#/login");
         var el6 = dom.createTextNode("Back to Sign in...");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
@@ -2529,19 +2561,15 @@ define("eco-ember2/templates/signup", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "id", "snackbar");
-        var el2 = dom.createTextNode("Some text some message..");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
         return el0;
       },
-      buildRenderNodes: function buildRenderNodes() {
-        return [];
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [0, 1, 3, 1]);
+        var morphs = new Array(1);
+        morphs[0] = dom.createElementMorph(element0);
+        return morphs;
       },
-      statements: [],
+      statements: [["element", "action", ["setUser"], [], ["loc", [null, [32, 19], [32, 39]]]]],
       locals: [],
       templates: []
     };
@@ -3358,7 +3386,7 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("eco-ember2/app")["default"].create({"name":"eco-ember2","version":"0.0.0+d23c5fbe"});
+  require("eco-ember2/app")["default"].create({"name":"eco-ember2","version":"0.0.0+4b7f49ed"});
 }
 
 /* jshint ignore:end */
