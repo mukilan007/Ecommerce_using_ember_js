@@ -22,17 +22,17 @@
             </thead>
             <tbody>
                 {{#each this.itemDataCart as |p|}}
-                    <tr>
-                        <td>{{p.product_name}}</td>
-                        <td>{{p.brand_name}}</td>
-                        <td>{{p.color}}</td>
-                        <td>{{p.size}}</td>
-                        <td id="tbodyquantity" contenteditable="true" >{{p.quantity}}</td>
-                        <td>{{p.price}}</td>
-                        <td>{{p.totalprice}}</td>
-                        <button {{action 'quantity_save' p.product_id}} >Save</button>
-                        <button id="cancel" {{action 'Cancel' p.product_id}} >Remove</button>
-                    </tr>
+                        <tr>
+                            <td>{{p.product_name}}</td>
+                            <td>{{p.brand_name}}</td>
+                            <td>{{p.color}}</td>
+                            <td>{{p.size}}</td>
+                            <td id="tbodyquantity" contenteditable="true" >{{p.quantity}}</td>
+                            <td>{{p.price}}</td>
+                            <td>{{p.totalprice}}</td>
+                            <button {{action 'quantity_save' p.product_id}} >Save</button>
+                            <button id="cancel" {{action 'Cancel' p.product_id}} >Remove</button>
+                        </tr>
                 {{/each}}
             </tbody>
         </table>

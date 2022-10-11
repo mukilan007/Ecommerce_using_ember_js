@@ -10,14 +10,15 @@ export default Ember.Controller.extend({
             method: "GET",
             headers : { Accept : "application/json; charset=utf-8", "Content-Type" : "application/json; charset=utf-8"},
             success : function(result) {
-                var product = $.parseJSON(result);
-                console.log(product);
+                var data = $.parseJSON(result);
+                console.log(data);
+                self.set('totalamount',data[data.length-1]);
+                var product = delete data[product.length-1];
                 self.set('itemDataCart',product);
-                self.set('totalamount',product[product.length-1]);
-             },
+            },
             error: function(result){
                 alert(" error occurs "+ result);
-            }
+            },
         });
     },
     actions: {
@@ -33,7 +34,8 @@ export default Ember.Controller.extend({
                 cache: false,
                 success: function(){
                     alert("ordered placed");
-                    window.location.reload();
+//                    window.location.href = "#/OrderDetail";
+                    this.transitionTo('OrderDetail');
                 },
                 error: function(){
                     alert("error occurs");

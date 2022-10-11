@@ -101,8 +101,9 @@ define('eco-ember2/controllers/cart', ['exports', 'ember', 'jquery'], function (
                 success: function success(result) {
                     var product = _jquery['default'].parseJSON(result);
                     console.log(product);
-                    self.set('itemDataCart', product);
                     self.set('totalamount', product[product.length - 1]);
+                    var product = delete product[product.length - 1];
+                    self.set('itemDataCart', product);
                 },
                 error: function error(result) {
                     alert(" error occurs " + result);
@@ -122,7 +123,8 @@ define('eco-ember2/controllers/cart', ['exports', 'ember', 'jquery'], function (
                     cache: false,
                     success: function success() {
                         alert("ordered placed");
-                        window.location.reload();
+                        //                    window.location.href = "#/OrderDetail";
+                        this.transitionTo('OrderDetail');
                     },
                     error: function error() {
                         alert("error occurs");
@@ -1114,34 +1116,34 @@ define("eco-ember2/templates/cart", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("                    ");
+          var el1 = dom.createTextNode("                        ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("tr");
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("td");
           var el3 = dom.createComment("");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("td");
           var el3 = dom.createComment("");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("td");
           var el3 = dom.createComment("");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("td");
           var el3 = dom.createComment("");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("td");
           dom.setAttribute(el2, "id", "tbodyquantity");
@@ -1149,32 +1151,32 @@ define("eco-ember2/templates/cart", ["exports"], function (exports) {
           var el3 = dom.createComment("");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("td");
           var el3 = dom.createComment("");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("td");
           var el3 = dom.createComment("");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("button");
           var el3 = dom.createTextNode("Save");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                        ");
+          var el2 = dom.createTextNode("\n                            ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("button");
           dom.setAttribute(el2, "id", "cancel");
           var el3 = dom.createTextNode("Remove");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n                    ");
+          var el2 = dom.createTextNode("\n                        ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -1197,7 +1199,7 @@ define("eco-ember2/templates/cart", ["exports"], function (exports) {
           morphs[8] = dom.createElementMorph(element2);
           return morphs;
         },
-        statements: [["content", "p.product_name", ["loc", [null, [26, 28], [26, 46]]]], ["content", "p.brand_name", ["loc", [null, [27, 28], [27, 44]]]], ["content", "p.color", ["loc", [null, [28, 28], [28, 39]]]], ["content", "p.size", ["loc", [null, [29, 28], [29, 38]]]], ["content", "p.quantity", ["loc", [null, [30, 71], [30, 85]]]], ["content", "p.price", ["loc", [null, [31, 28], [31, 39]]]], ["content", "p.totalprice", ["loc", [null, [32, 28], [32, 44]]]], ["element", "action", ["quantity_save", ["get", "p.product_id", ["loc", [null, [33, 57], [33, 69]]]]], [], ["loc", [null, [33, 32], [33, 71]]]], ["element", "action", ["Cancel", ["get", "p.product_id", ["loc", [null, [34, 62], [34, 74]]]]], [], ["loc", [null, [34, 44], [34, 76]]]]],
+        statements: [["content", "p.product_name", ["loc", [null, [26, 32], [26, 50]]]], ["content", "p.brand_name", ["loc", [null, [27, 32], [27, 48]]]], ["content", "p.color", ["loc", [null, [28, 32], [28, 43]]]], ["content", "p.size", ["loc", [null, [29, 32], [29, 42]]]], ["content", "p.quantity", ["loc", [null, [30, 75], [30, 89]]]], ["content", "p.price", ["loc", [null, [31, 32], [31, 43]]]], ["content", "p.totalprice", ["loc", [null, [32, 32], [32, 48]]]], ["element", "action", ["quantity_save", ["get", "p.product_id", ["loc", [null, [33, 61], [33, 73]]]]], [], ["loc", [null, [33, 36], [33, 75]]]], ["element", "action", ["Cancel", ["get", "p.product_id", ["loc", [null, [34, 66], [34, 78]]]]], [], ["loc", [null, [34, 48], [34, 80]]]]],
         locals: ["p"],
         templates: []
       };
@@ -3386,7 +3388,7 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("eco-ember2/app")["default"].create({"name":"eco-ember2","version":"0.0.0+4b7f49ed"});
+  require("eco-ember2/app")["default"].create({"name":"eco-ember2","version":"0.0.0+2c649397"});
 }
 
 /* jshint ignore:end */
