@@ -1,0 +1,32 @@
+table {
+        border-collapse: collapse;
+        width: 100%;
+        color: black;
+        text-align: left;
+}
+th {
+        background-color: green;
+        color: white;
+        opacity: 0.6;
+}
+
+.outercard{
+        padding: 3rem;
+}
+
+.innercard {
+        border: 2px solid black;
+        padding: 1.25rem;
+}
+
+#cardbtn{
+        padding-bottom: 10px;
+}
+
+#tbodyquantity {
+    margin-top: 1rem;
+}
+
+.dis_amount{
+    float: left;
+}

@@ -24,6 +24,7 @@ public class VendorService {
     private void sessionvalidate(HttpSession session) throws SessionException {
         if(session != null) {
             String type = (String) session.getAttribute(Constant.Usersdata.isadmin);
+            System.out.println(type);
             if (type.equals("f")) {
                 throw new SessionException("Unauthorized");
             }

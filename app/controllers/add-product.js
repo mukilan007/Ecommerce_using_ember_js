@@ -3,16 +3,13 @@ import $ from 'jquery';
 
 export default Ember.Controller.extend({
     actions: {
-        refresh:function() {
-                window.location.reload();
-        },
 
         logout:function() {
             $.ajax({
                 url : "logout",
                 method : 'GET',
                 success: function(){
-                    window.location.href = "EcoEmber2/#/login";
+                    window.location.href = "#/login";
                 }
             });
         },
@@ -46,11 +43,16 @@ export default Ember.Controller.extend({
                 cache: false,
                 success: function(){
                     alert("success");
+                    window.location.reload();
                 },
                 error: function(){
                     alert("error occur");
                 }
             });
-        }
+        },
+
+        refresh:function() {
+            window.location.reload();
+        },
     }
 });

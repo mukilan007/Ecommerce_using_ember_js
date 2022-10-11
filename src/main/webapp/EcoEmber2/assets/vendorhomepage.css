@@ -1,0 +1,27 @@
+label{
+    margin-bottom: inherit;
+}
+
+body{
+        margin: 0;
+        font-family: Arial;
+}
+
+.vendorcontainer{
+    border: 6px solid #f1f1f1;
+    position: absolute;
+    left: 40%;
+}
+
+#vendor_inner_container1{
+        padding: 16px;
+}
+
+#vendor_inner_container1 input{
+    padding: 5px 5px 5px 5px;
+}
+
+#vendor_inner_container2{
+        background-color:#f1f1f1;
+        padding: 16px;
+}

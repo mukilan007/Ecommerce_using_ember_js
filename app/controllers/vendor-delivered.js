@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
                 url : "logout",
                 method : 'GET',
                 success: function(){
-                    window.location.href = "EcoEmber2/#/login";
+                    window.location.href = "#/login";
                 }
             });
         },

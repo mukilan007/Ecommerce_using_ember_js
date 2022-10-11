@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
                 url : "logout",
                 method : 'GET',
                 success: function(){
-                    window.location.href = "EcoEmber2/#/login";
+                    window.location.href = "#/login";
                 }
             });
         },
@@ -48,6 +48,7 @@ export default Ember.Controller.extend({
                 cache: false,
                 success : function() {
                     alert("success");
+                    window.location.reload();
                 },
                 error: function(){
                     alert("error occurs");
@@ -65,7 +66,7 @@ export default Ember.Controller.extend({
                  cache: false,
                  success : function() {
                      alert("success");
-                     this.send("refresh");
+                     window.location.reload();
                  },
                  error: function(){
                      alert("error occurs");

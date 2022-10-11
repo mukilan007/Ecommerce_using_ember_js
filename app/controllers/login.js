@@ -3,9 +3,13 @@ import $ from 'jquery';
 
 export default Ember.Controller.extend({
 //    ajax: Ember.inject.service(),
+    errorMessage:function() {
+        var error = document.getElementById("error");
+        error.textContent = "Please enter a correct value";
+        error.style.color = "red";
+    },
     actions : {
         getUser:function() {
-            alert('login');
             document.getElementById("error").value = "";
             var emailId = document.getElementById("emailId").value;
             var password = document.getElementById("password").value;
@@ -14,10 +18,10 @@ export default Ember.Controller.extend({
 //                    data: {"payload" : JSON.stringify({"e_mail": emailId, "password": password})},
 //                    success: function(usertype, name){
 //                        if(usertype === "isadmin"){
-//                            window.location.href = "EcoEmber2/#/VendorHomePage";
+//                            window.location.href = "#/VendorHomePage";
 //                        }
 //                        else if(usertype === "notadmin") {
-//                            window.location.href = "EcoEmber2/#/Home"; }
+//                            window.location.href = "#/Home"; }
 //                        alert("Welcome " +  name);
 //                    },
 //                    error: function(a, msg){
@@ -32,10 +36,10 @@ export default Ember.Controller.extend({
                 cache: false,
                 success: function(usertype, name){
                     if(usertype === "isadmin"){
-                        window.location.href = "EcoEmber2/#/VendorHomePage";
+                        window.location.href = "#/VendorHomePage";
                     }
                     else if(usertype === "notadmin") {
-                        window.location.href = "EcoEmber2/#/Home"; }
+                        window.location.href = "#/Home"; }
                     alert("Welcome " +  name);
         //            myFunction();
                 },
@@ -45,10 +49,5 @@ export default Ember.Controller.extend({
                 }
             });
         },
-        errorMessage:function() {
-            var error = document.getElementById("error");
-            error.textContent = "Please enter a correct value";
-            error.style.color = "red";
-        }
     }
 });

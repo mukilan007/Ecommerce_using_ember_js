@@ -6,8 +6,8 @@ export default Ember.Controller.extend({
         this._super();
         var self = this;
         var category_name = sessionStorage.getItem("catname");
+        console.log(category_name);
         var payload = {"cateory_name": category_name};
-        alert("product details "+ payload);
         $.ajax({
             url: "view/product",
             method: "GET",
@@ -15,10 +15,10 @@ export default Ember.Controller.extend({
             cache: false,
             headers : { Accept : "application/json; charset=utf-8", "Content-Type" : "application/json; charset=utf-8"},
             success: function(result){
-                console.log(result);
                 var product = $.parseJSON(result);
                 self.set("productname",product[0].category_name);
-                self.set("totalproduct",product[0].category_name);
+                console.log(product);
+                self.set("totalproduct",product);
             },
             error: function(){
     //            errorMessage();
@@ -36,9 +36,9 @@ export default Ember.Controller.extend({
                 url : "logout",
                 method : 'GET',
                 success: function(){
-                    window.location.href = "EcoEmber2/#/login";
+                    window.location.href = "#/login";
                 }
-                });
+            });
         },
 
         addcart:function(productid, vendorid) {

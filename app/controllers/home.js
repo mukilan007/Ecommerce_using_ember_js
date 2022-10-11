@@ -5,7 +5,6 @@ export default Ember.Controller.extend({
     init:function() {
         this._super();
         var self = this;
-        alert("home");
         $.ajax({
         		url : "product",
         		type : 'GET',
@@ -19,19 +18,21 @@ export default Ember.Controller.extend({
     },
     actions: {
         refresh:function() {
-        window.location.reload();
+            window.location.reload();
         },
+
         redirectthis:function(value) {
             sessionStorage.clear();
             sessionStorage.setItem("catname", value);
-            window.location.href = "EcoEmber2/#/ProductDetails";
+            window.location.href = "#/ProductDetails";
+            window.location.reload();
         },
         logout:function() {
             $.ajax({
                 url : "logout",
                 method : 'GET',
                 success: function(){
-                    window.location.href = "EcoEmber2/#/login";
+                    window.location.href = "#/login";
                 }
                 });
         }
