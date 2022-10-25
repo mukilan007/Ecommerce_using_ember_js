@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
                     window.location.href = "#/login";
                     window.location.reload();
                 }
-                });
+            });
         }
     }
 });

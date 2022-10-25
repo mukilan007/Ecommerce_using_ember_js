@@ -22,7 +22,7 @@ define('eco-ember2/tests/controllers/cart.jshint', ['exports'], function (export
   QUnit.module('JSHint - controllers/cart.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'controllers/cart.js should pass jshint.\ncontrollers/cart.js: line 16, col 21, \'product\' is already defined.\n\n1 error');
+    assert.ok(true, 'controllers/cart.js should pass jshint.');
   });
 });
 define('eco-ember2/tests/controllers/home.jshint', ['exports'], function (exports) {

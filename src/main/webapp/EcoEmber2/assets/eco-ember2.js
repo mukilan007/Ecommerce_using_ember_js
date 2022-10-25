@@ -99,10 +99,10 @@ define('eco-ember2/controllers/cart', ['exports', 'ember', 'jquery'], function (
                 method: "GET",
                 headers: { Accept: "application/json; charset=utf-8", "Content-Type": "application/json; charset=utf-8" },
                 success: function success(result) {
-                    var product = _jquery['default'].parseJSON(result);
-                    console.log(product);
-                    self.set('totalamount', product[product.length - 1]);
-                    var product = delete product[product.length - 1];
+                    var data = _jquery['default'].parseJSON(result);
+                    console.log(data);
+                    self.set('totalamount', data[data.length - 1]);
+                    var product = delete data[product.length - 1];
                     self.set('itemDataCart', product);
                 },
                 error: function error(result) {
@@ -3388,7 +3388,7 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("eco-ember2/app")["default"].create({"name":"eco-ember2","version":"0.0.0+2c649397"});
+  require("eco-ember2/app")["default"].create({"name":"eco-ember2","version":"0.0.0+39b3f6f5"});
 }
 
 /* jshint ignore:end */
