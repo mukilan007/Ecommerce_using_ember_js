@@ -2,6 +2,8 @@ import Ember from 'ember';
 import $ from 'jquery';
 
 export default Ember.Controller.extend({
+    itemDataCart: null,
+
     init:function() {
         this._super();
         var self = this;
@@ -13,8 +15,8 @@ export default Ember.Controller.extend({
                 var data = $.parseJSON(result);
                 console.log(data);
                 self.set('totalamount',data[data.length-1]);
-                var product = delete data[product.length-1];
-                self.set('itemDataCart',product);
+                delete data[data.length-1];
+                self.set('itemDataCart',data);
             },
             error: function(result){
                 alert(" error occurs "+ result);
@@ -22,10 +24,6 @@ export default Ember.Controller.extend({
         });
     },
     actions: {
-        refresh:function() {
-        window.location.reload();
-        },
-
         generateorder:function() {
             alert(" Pay a Amount ");
             $.ajax({
@@ -34,24 +32,13 @@ export default Ember.Controller.extend({
                 cache: false,
                 success: function(){
                     alert("ordered placed");
-//                    window.location.href = "#/OrderDetail";
-                    this.transitionTo('OrderDetail');
+                    window.location.href = "#/OrderDetail";
+//                    this.transitionToRoute('OrderDetail');
                 },
                 error: function(){
                     alert("error occurs");
                     window.location.reload();
                 },
-            });
-        },
-
-        logout:function() {
-        $.ajax({
-            url : "logout",
-            method : 'GET',
-            success: function(){
-                window.location.href = "#/login";
-                window.location.reload();
-            }
             });
         },
 
@@ -74,10 +61,19 @@ export default Ember.Controller.extend({
         },
 
         quantity_save:function(product_id) {
-            var quantity = document.getElementById("tbodyquantity").innerHTML;
+        var quantity = null;
+            var itemDataCart = this.get('itemDataCart');
+            for (var i = 0; i < itemDataCart.length-1; i++) {
+                if(itemDataCart[i].product_id === product_id) {
+                    console.log(itemDataCart[i].quantity);
+                    quantity = itemDataCart[i].quantity;
+                }
+            }
+//            var quantity = document.getElementById("tbodyquantity"+product_id).innerHTML;
+            console.log("quantity : " + quantity);
             var payload = {"product_id": product_id,
                             "quantity": quantity};
-            alert(payload.product_id+" "+payload.quantity);
+//            alert(payload.product_id+" "+payload.quantity);
             $.ajax({
                 url : "save/cart",
                 method: 'GET',

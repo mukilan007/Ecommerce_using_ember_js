@@ -20,17 +20,6 @@ export default Ember.Controller.extend({
         });
     },
     actions: {
-        logout:function() {
-            $.ajax({
-                url : "logout",
-                method : 'GET',
-                success: function(){
-                    window.location.href = "#/login";
-                    window.location.reload();
-                }
-            });
-        },
-
         onDelete:function(data){
             var payload = {"product_id": data.toString()};
             $.ajax({
@@ -47,10 +36,6 @@ export default Ember.Controller.extend({
                     alert("error occurs");
                 }
             });
-        },
-
-        refresh:function() {
-            window.location.reload();
-        },
+        }
     }
 });

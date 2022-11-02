@@ -24,21 +24,6 @@ export default Ember.Controller.extend({
     },
 
     actions: {
-        refresh:function() {
-                window.location.reload();
-        },
-
-        logout:function() {
-            $.ajax({
-                url : "logout",
-                method : 'GET',
-                success: function(){
-                    window.location.href = "#/login";
-                    window.location.reload();
-                }
-            });
-        },
-
         onDelivered:function(data) {
         	var payload = {"_id": data.toString()};
             $.ajax({

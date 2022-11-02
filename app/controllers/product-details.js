@@ -27,21 +27,6 @@ export default Ember.Controller.extend({
         });
     },
     actions: {
-        refresh:function() {
-        window.location.reload();
-        },
-
-        logout:function() {
-            $.ajax({
-                url : "logout",
-                method : 'GET',
-                success: function(){
-                    window.location.href = "#/login";
-                    window.location.reload();
-                }
-            });
-        },
-
         addcart:function(productid, vendorid) {
             var payload = {"product_id": productid.toString(),
                             "vendor_id": vendorid.toString()

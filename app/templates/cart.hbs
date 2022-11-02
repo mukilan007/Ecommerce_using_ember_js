@@ -1,12 +1,7 @@
 <div>
-    {{topnavbar}}
-    <div class="topnav">
-        <a class="reload" {{action 'refresh'}}>Eco</a>
-        <a href="#/Home">Home</a>
-        <a class="active" href="#/Cart">Cart</a>
-        <a href="#/OrderDetail">Your Order</a>
-        <a {{action 'logout'}}>Logout</a>
-    </div>
+    {{#each model as |post|}}
+        {{topnav-bar type1=post.type1 type2=post.type2 type3=post.type3 type4=post.type4}}
+    {{/each}}
     <div>
         <table id="cartlist">
             <thead>
@@ -27,10 +22,13 @@
                             <td>{{p.brand_name}}</td>
                             <td>{{p.color}}</td>
                             <td>{{p.size}}</td>
-                            <td id="tbodyquantity" contenteditable="true" >{{p.quantity}}</td>
+                            <td>{{input class="dummyint" type="text" value=p.quantity}}</td>
+<!--                            <input type="number" value="p.quantity}}" on "change" this.itemDataCart.quantity}}>-->
+<!--                            <td id="tbodyquantity.product_id}}" contenteditable="true">p.quantity}}</td>-->
+<!--                            action "quantity_save" p.product_id on="change"}}-->
                             <td>{{p.price}}</td>
                             <td>{{p.totalprice}}</td>
-                            <button {{action 'quantity_save' p.product_id}} >Save</button>
+                            <button {{action 'quantity_save' p.product_id}}  >Save</button>
                             <button id="cancel" {{action 'Cancel' p.product_id}} >Remove</button>
                         </tr>
                 {{/each}}

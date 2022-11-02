@@ -1,7 +1,26 @@
-<article class="blog-post">
-    <a class={{type1}} {{action 'refresh'}}>Eco</a>
-    <a class={{type2}} {{action 'refresh'}}>Home</a>
-    <a class={{type3}} href="#/Cart" >Cart</a>
-    <a class={{type4}} href="#/OrderDetail">Your Order</a>
-    <a {{action 'logout'}}>Logout</a>
-</article>
+<form id="addform">
+    <table id="cartlist">
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Brand Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each this.delivereditem as |p|}}
+            <tr>
+                <td>{{p.product_name}}</td>
+                <td>{{p.brand_name}}</td>
+                <td>{{p.color}}</td>
+                <td>{{p.size}}</td>
+                <td>{{p.quantity}}</td>
+                <td>{{p.price}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</form>

@@ -94,9 +94,6 @@ public class FindQuery {
     }
 
     public static void main(String[] args) throws SQLException, DataAccessException {
-
-
-
         insert();
         Map<String, String> map = new HashMap<String, String>();
         update("a","b",map);

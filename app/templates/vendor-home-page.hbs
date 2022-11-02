@@ -1,11 +1,7 @@
 <div>
-    <div class="topnav">
-        <a class="active" {{action "refresh"}} >Home</a>
-        <a href="#/AddProduct">Add</a>
-        <a class="reload" href="#/VendorDelivery">Delivery</a>
-        <a class="reload" href="#/VendorDelivered">Delivered</a>
-        <a class="reload" {{action "logout"}}>Logout</a>
-    </div>
+    {{#each model as |post|}}
+        {{vendortopnav-bar type1=post.type1 type2=post.type2 type3=post.type3 type4=post.type4 type5=post.type5}}
+    {{/each}}
     <form id="addform">
         <table id="cartlist">
             <thead>

@@ -17,25 +17,11 @@ export default Ember.Controller.extend({
             });
     },
     actions: {
-        refresh:function() {
-            window.location.reload();
-        },
-
         redirectthis:function(value) {
             sessionStorage.clear();
             sessionStorage.setItem("catname", value);
             window.location.href = "#/ProductDetails";
             window.location.reload();
-        },
-        logout:function() {
-            $.ajax({
-                url : "logout",
-                method : 'GET',
-                success: function(){
-                    window.location.href = "#/login";
-                    window.location.reload();
-                }
-            });
         }
     }
 });

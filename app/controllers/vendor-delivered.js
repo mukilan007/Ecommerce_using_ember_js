@@ -21,17 +21,5 @@ export default Ember.Controller.extend({
                 alert("error occurs");
             }
         });
-    },
-    actions: {
-        logout:function() {
-            $.ajax({
-                url : "logout",
-                method : 'GET',
-                success: function(){
-                    window.location.href = "#/login";
-                    window.location.reload();
-                }
-            });
-        },
     }
 });

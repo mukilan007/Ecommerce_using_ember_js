@@ -1,7 +1,9 @@
-<article class="topnavbar">
-    <a class="reload" {{action 'refresh'}}>Eco</a>
-    <a class="active" {{action 'refresh'}}>Home</a>
-    <a href="#/Cart">Cart</a>
-    <a href="#/OrderDetail">Your Order</a>
-    <a {{action 'logout'}}>Logout</a>
-</article>
+<div class="topnav-bar">
+    <a class= {{type1}} {{action 'refresh'}}>Eco</a>
+<!--    <a contenteditable="true" class= type1}}>Eco</a>-->
+    {{#link-to 'Home'}}<i class={{type2}}></i>Home{{/link-to}}
+    {{#link-to 'Cart'}}<i class={{type3}}></i>Cart{{/link-to}}
+    {{#link-to 'OrderDetail'}}<i class={{type4}}></i>Your Order{{/link-to}}
+    {{input class="setupdate" type="text" value=setupdate.message }}
+    {{nav-logout logout="whileLogout"}}
+</div>
